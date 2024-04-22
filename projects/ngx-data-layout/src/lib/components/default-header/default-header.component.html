@@ -1,0 +1,5 @@
+<mat-button-toggle-group [value]="currentLayout()">
+  @for (layout of layouts(); track layout) {
+    <mat-button-toggle [value]="layout" (change)="setLayout(layout)">{{ layout }}</mat-button-toggle>
+  }
+</mat-button-toggle-group>

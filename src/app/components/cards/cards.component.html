@@ -1,0 +1,9 @@
+@for(element of elements(); track element.id) {
+  <mat-card class="full">
+    <mat-card-header>
+      <mat-card-title class="grow">{{ element.id }}</mat-card-title>
+      <mat-checkbox [checked]="isSelected(element)" (change)="toggle(element)" />
+    </mat-card-header>
+    <mat-card-content>{{ element.name }}</mat-card-content>
+  </mat-card>
+}

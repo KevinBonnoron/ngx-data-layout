@@ -1,0 +1,67 @@
+$height: 12.5rem;
+$width: 7.5rem;
+$horizontal-border: calc($width / 2.4);
+$vertical-border: calc($height / 2);
+$color: #ec1346;
+$selected-color: #8c2242;
+
+.row {
+  display: flex;
+  gap: calc($width * 2);
+
+  &:nth-child(1n+2) {
+    margin-top: -(calc($height / 2)) + 0.5rem;
+  }
+
+  &:nth-child(2n) {
+    margin-left: calc($width * 2) - calc($width / 2);
+  }
+}
+
+hexagon {
+  height: $height;
+  width: $width;
+  line-height: $height;
+  text-align: center;
+  white-space: nowrap;
+  background: $color;
+  position:relative;
+  left: $horizontal-border;
+  box-sizing: border-box;
+
+  &.selected {
+    background: $selected-color;
+    border-color: $selected-color;
+  }
+}
+
+hexagon::before, hexagon::after {
+  content:"";
+  position: absolute;
+  height: 0;
+  width: 0; 
+  top: 0;
+  /* half height */
+  border-top: $vertical-border solid transparent;
+  border-bottom: $vertical-border solid transparent; 
+}
+
+hexagon::before {
+  left: -$horizontal-border;
+  border-right: $horizontal-border solid $color;
+}
+
+hexagon::after {
+  right: -$horizontal-border;
+  border-left: $horizontal-border solid $color;
+}
+
+hexagon.selected::before {
+  left: -$horizontal-border;
+  border-right: $horizontal-border solid $selected-color;
+}
+
+hexagon.selected::after {
+  right: -$horizontal-border;
+  border-left: $horizontal-border solid $selected-color;
+}

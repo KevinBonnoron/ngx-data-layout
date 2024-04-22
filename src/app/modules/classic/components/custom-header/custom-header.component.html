@@ -1,0 +1,5 @@
+<div class="container">
+  @for (layout of layouts(); track layout) {
+    <button mat-raised-button [color]="currentLayout() === layout ? 'primary' : ''" (click)="setLayout(layout)">{{ layout }}</button>
+  }
+</div>
