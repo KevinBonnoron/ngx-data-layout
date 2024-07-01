@@ -1,7 +1,7 @@
 {
   "name": "ngx-data-layout",
   "description": "Angular library to display data in different layout",
-  "version": "0.0.5",
+  "version": "0.0.0",
   "publishConfig": {},
   "repository": {
     "type": "git",
