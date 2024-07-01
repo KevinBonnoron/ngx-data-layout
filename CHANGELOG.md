@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/KevinBonnoron/ngx-data-layout/compare/v1.0.0...v1.1.0) (2024-07-01)
+
+
+### Features
+
+* remove mandatory data id property ([8d55a48](https://github.com/KevinBonnoron/ngx-data-layout/commit/8d55a48da466cfc47c1d59afb3b0b7e734ba4ab8))
+
 # 1.0.0 (2024-06-29)
 
 
