@@ -1,9 +1,8 @@
 import { Directive, computed, input } from '@angular/core';
-import { DataLayoutElement } from '../models';
 import { DataLayoutStore } from '../stores';
 
 @Directive()
-export abstract class DataLayout<T extends DataLayoutElement> {
+export abstract class DataLayout<T> {
   protected readonly dataLayoutStore = input.required<DataLayoutStore<T>>();
 
   readonly elements = computed(() => this.dataLayoutStore().elements());

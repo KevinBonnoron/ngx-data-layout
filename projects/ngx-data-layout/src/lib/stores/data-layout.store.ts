@@ -1,7 +1,6 @@
 import { Signal, computed, signal } from '@angular/core';
-import { DataLayoutElement } from '../models';
 
-export interface DataLayoutStore<T extends DataLayoutElement> {
+export interface DataLayoutStore<T> {
   elements: Signal<T[]>;
   selected: Signal<T[]>;
   allSelected: Signal<boolean>;
@@ -14,7 +13,7 @@ export interface DataLayoutStore<T extends DataLayoutElement> {
   toggleAll(): void;
 }
 
-export const DataLayoutStoreProvider = <T extends DataLayoutElement>(elements: Signal<T[]>, selected = signal<T[]>([])): DataLayoutStore<T> => {
+export const DataLayoutStoreProvider = <T>(elements: Signal<T[]>, selected = signal<T[]>([])): DataLayoutStore<T> => {
   const allSelected = computed(() => elements().length > 0 && selected().length === elements().length);
   const someSelected = computed(() => elements().length > 0 && selected().length > 0 && !allSelected());
   const clear = () => selected.set([]);

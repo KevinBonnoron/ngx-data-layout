@@ -1,6 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, ViewContainerRef, inject, model, viewChild } from '@angular/core';
-import { DataLayoutElement, DataLayoutOptionsComponent } from '../../models';
+import { DataLayoutOptionsComponent } from '../../models';
 import { DataLayoutStoreProvider } from '../../stores';
 import { DATA_LAYOUT_OPTIONS_TOKEN } from '../../tokens';
 
@@ -13,7 +13,7 @@ import { DATA_LAYOUT_OPTIONS_TOKEN } from '../../tokens';
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'ngxDataLayout'
 })
-export class NgxDataLayoutComponent<T extends DataLayoutElement> implements OnInit {
+export class NgxDataLayoutComponent<T> implements OnInit {
   private readonly options = inject(DATA_LAYOUT_OPTIONS_TOKEN);
 
   readonly elements = model.required<T[]>();
@@ -25,6 +25,12 @@ export class NgxDataLayoutComponent<T extends DataLayoutElement> implements OnIn
   
   ngOnInit(): void {
     this.createHeader();
+
+    const dataLayoutComponent = this.options.components.find((component) => component.name === this.options.defaultLayout);
+    if (dataLayoutComponent) {
+      this.createContent(dataLayoutComponent);
+    }
+
     this.createFooter();
   }
 
@@ -42,7 +48,7 @@ export class NgxDataLayoutComponent<T extends DataLayoutElement> implements OnIn
     });
   }
 
-  private createContent(dataLayoutComponent: DataLayoutOptionsComponent<DataLayoutElement>) {
+  private createContent(dataLayoutComponent: DataLayoutOptionsComponent<T>) {
     const contentViewContainerRef = this.contentViewContainerRef();
     contentViewContainerRef.clear();
     const componentRef = contentViewContainerRef.createComponent(dataLayoutComponent.component);
