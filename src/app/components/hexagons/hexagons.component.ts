@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { DataLayoutComponent } from 'ngx-data-layout';
 import { Character } from '../../models';
 import { HexagonComponent } from './hexagon/hexagon.component';
@@ -19,7 +19,5 @@ const chunk = (arr: any[], size: number) =>
   styleUrl: './hexagons.component.scss',
 })
 export class HexagonsComponent extends DataLayoutComponent<Character> {
-  get chunks() {
-    return chunk(this.elements(), 3);
-  }
+  readonly chunks = computed(() => chunk(this.elements(), 3));
 }

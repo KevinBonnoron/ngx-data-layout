@@ -1,14 +1,17 @@
 # NgxDataLayout
+
 ![screenshot](./images/screenshot.png 'Example')
 
 This library aims to display data in a configurable way.
 
 # Installation
+
 ```shell
 npm install ngx-data-layout
 ```
 
 # Usage
+
 First you need to define the components that will display your data. To do so, define a class that extends the DataLayoutComponent class with the generic model type you are going to display
 
 ```typescript
@@ -28,6 +31,7 @@ export class CardsComponent extends DataLayoutComponent<Character> {}
 ```
 
 Then in your template you can use:
+
 - elements: contains the data you passed
 - toggle(element): to change the selected state of an element
 - isSelected(element): to get the selected state of an element
@@ -35,18 +39,20 @@ Then in your template you can use:
 ```html
 <!-- cards.component.html -->
 @for(element of elements(); track element.id) {
-  <mat-card class="full">
-    <mat-card-header>
-      <mat-card-title>{{ element.id }}</mat-card-title>
-      <mat-checkbox [checked]="isSelected(element)" (change)="toggle(element)" />
-    </mat-card-header>
-    <mat-card-content>{{ element.name }}</mat-card-content>
-  </mat-card>
+<mat-card class="full">
+  <mat-card-header>
+    <mat-card-title>{{ element.id }}</mat-card-title>
+    <mat-checkbox [checked]="isSelected(element)" (change)="toggle(element)" />
+  </mat-card-header>
+  <mat-card-content>{{ element.name }}</mat-card-content>
+</mat-card>
 }
 ```
 
 ## Standalone components
+
 To use it in standalone component:
+
 - add the `NgxDataLayoutModule` module to the component `imports` property
 - add the `provideDataLayout` function to the component `providers` property with the configuration
 
@@ -81,7 +87,9 @@ export class StandaloneComponent {
 ```
 
 ## Classic components
+
 To use it in classic component:
+
 - use the NgxDataLayoutModule `forConfig` static method in the module `imports` property with the configuration
 
 ```typescript
@@ -97,7 +105,7 @@ import { CardsComponent, ClassicComponent, HexagonsComponent, TableComponent } f
         { component: CardsComponent, name: 'card' },
         { component: TableComponent, name: 'table' },
         { component: HexagonsComponent, name: 'hexagon' },
-      ]
+      ],
     }),
   ],
   declarations: [ClassicComponent],
@@ -121,26 +129,27 @@ export class ClassicComponent {
 <ngx-data-layout [elements]="elements" />
 ```
 
-# Custom Header
-You can use a custom component for the header by using the `header` property when providing options. The component must inherit the DataLayoutHeader directive:
+# Custom Template
+
+You can use a custom component for the template by using the `wrapper` property when providing options. In the template use the default ngx-data-layout-actions & ngx-data-layout-content components to include the buttons and the the layout component:
+
 ```typescript
-/// custom-header.component.ts
-import { Component } from '@angular/core';
-import { DataLayoutHeader } from 'ngx-data-layout';
+/// custom-wrapper.component.ts
+import { Component, inject } from '@angular/core';
 
 @Component({
-  templateUrl: './custom-header.component.html',
+  selector: 'app-custom-wrapper',
+  templateUrl: './custom-wrapper.component.html',
 })
-export class CustomHeaderComponent extends DataLayoutHeader {}
+export class CustomWrapperComponent {}
 ```
 
 ```html
-// custom-header.component.html
-<div class="container">
-  @for (layout of layouts(); track layout) {
-    <button mat-raised-button [color]="currentLayout() === layout ? 'primary' : ''" (click)="setLayout(layout)">{{ layout }}</button>
-  }
+// custom-wrapper.component.html
+<div style="background-color: red">
+  <ngx-data-layout-actions />
 </div>
+<ngx-data-layout-content />
 ```
 
 ```typescript
@@ -152,37 +161,28 @@ provideDataLayout({
 
 # Api
 
+## Stores
+
+### DataLayoutStore
+
+Injected class which contains data
+
 ## Directives
 
-### DataLayout
-Base directive for every components
-| Name                                               | Description                                               |
-|----------------------------------------------------|---------------------------------------------------------- |
-| @Input() dataLayoutStore!: Signal<DataLayoutStore>;| Internal store for managing data and selection            |
-| elements: Signal<T[]>;                             | Provided elements                                         |
-| selectedElements: Signal<T[]>;                     | Selected elements                                         |
-| allSelected: Signal<boolean>;                      | Return true if all elements have been selected            |
-| someSelected: Signal<boolean>;                     | Return true if some (not all) elements have been selected |
-
 ### DataLayoutComponent
+
 Base class for every DataLayout component.
 
-| Name                                                    | Description                                                      |
-|---------------------------------------------------------|----------------------------------------------------------------- |
-| toggle(element: Element): void                          | Change the selected state of the passed element                  |
-| toggleAll(): void                                       | Change the selected state of all elements (based on allSelected) |
-| select(element: Element): void                          | Select the passed element                                        |
-| isSelected(element: Element): boolean                   | Return true if the passed element is selected                    |
-
-### DataLayoutHeader
-Base class for header overriding
-
-| Name                                                    | Description                                |
-| ------------------------------------------------------- | ------------------------------------------ |
-| @Input() layouts: InputSignal<string>                   | All the component layout names             |
-| @Input() currentLayout: ModelSignal<string | undefined> | The current layout                         |
-| @Output() layoutChanged: EventEmitter<string>           | Emits whenever the layout has been changed |
-| setLayout(layout: string)                               | Trigger the layout change                  |
-
-### DataLayoutFooter
-Base class for footer overriding
+| Name                                  | Description                                                      |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| elements: Signal<T[]>;                | Provided elements                                                |
+| selectedElements: Signal<T[]>;        | Selected elements                                                |
+| allSelected: Signal<boolean>;         | Return true if all elements have been selected                   |
+| someSelected: Signal<boolean>;        | Return true if some (not all) elements have been selected        |
+| toggle(element: Element): void        | Change the selected state of the passed element                  |
+| toggleAll(): void                     | Change the selected state of all elements (based on allSelected) |
+| select(element: Element): void        | Select the passed element                                        |
+| selectAll(): void                     | Select all elements                                              |
+| unselect(element: Element): void      | Unselect the passed element                                      |
+| unselectAll(): void                   | Unselect all elements                                            |
+| isSelected(element: Element): boolean | Return true if the passed element is selected                    |

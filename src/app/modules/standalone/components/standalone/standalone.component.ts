@@ -11,10 +11,9 @@ import { CharactersService } from '../../../../services';
     provideDataLayout({
       components: [
         { component: CardsComponent, name: 'card' },
-        { component: TableComponent, name: 'table' },
+        { component: TableComponent, name: 'table', default: true },
         { component: HexagonsComponent, name: 'hexagon' },
       ],
-      defaultLayout: 'table'
     }),
   ]
 })

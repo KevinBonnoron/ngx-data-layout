@@ -1,0 +1,11 @@
+<div>
+  @for (layout of layouts; track layout) {
+    <button
+      mat-stroked-button
+      [ngClass]="{ selected: currentLayout() === layout }"
+      (click)="setLayout(layout)"
+    >
+      {{ layout }}
+    </button>
+  }
+</div>

@@ -4,24 +4,22 @@ import { NgxDataLayoutModule } from 'ngx-data-layout';
 import { CardsComponent, HexagonsComponent, TableComponent } from '../../components';
 import { CharactersService } from '../../services';
 import { ClassicRouterModule } from './classic-router.module';
-import { ClassicComponent, CustomHeaderComponent } from './components';
-import { CustomFooterComponent } from './components/custom-footer/custom-footer.component';
+import { ClassicComponent, CustomWrapperComponent } from './components';
 
 @NgModule({
   imports: [
     ClassicRouterModule,
     NgxDataLayoutModule.forConfig({
-      header: CustomHeaderComponent,
+      wrapper: CustomWrapperComponent,
       components: [
         { component: CardsComponent, name: 'card' },
         { component: TableComponent, name: 'table' },
         { component: HexagonsComponent, name: 'hexagon' },
       ],
-      footer: CustomFooterComponent
     }),
     MatButtonModule,
   ],
-  declarations: [ClassicComponent, CustomHeaderComponent, CustomFooterComponent],
+  declarations: [ClassicComponent, CustomWrapperComponent],
   providers: [
     CharactersService,
   ]

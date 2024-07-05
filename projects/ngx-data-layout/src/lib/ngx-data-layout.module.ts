@@ -1,11 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { NgxDataLayoutComponent } from './components';
+import { NgxDataLayoutActionsComponent, NgxDataLayoutComponent, NgxDataLayoutContentComponent } from './components';
 import { DataLayoutOptions } from './models';
 import { provideDataLayout } from './providers';
 
 @NgModule({
-  imports: [NgxDataLayoutComponent],
-  exports: [NgxDataLayoutComponent]
+  imports: [NgxDataLayoutComponent, NgxDataLayoutActionsComponent, NgxDataLayoutContentComponent],
+  exports: [NgxDataLayoutComponent, NgxDataLayoutActionsComponent, NgxDataLayoutContentComponent]
 })
 export class NgxDataLayoutModule {
   static forConfig<T>(configuration: Partial<DataLayoutOptions<T>>): ModuleWithProviders<NgxDataLayoutModule> {

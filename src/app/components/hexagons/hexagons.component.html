@@ -1,7 +1,11 @@
-@for (chunk of chunks; track chunk) {
+@for (chunk of chunks(); track chunk) {
   <div class="row">
     @for (element of chunk; track element.id) {
-      <hexagon [element]="element" [ngClass]="{ selected: isSelected(element) }" (click)="toggle(element)" />
+      <hexagon
+        [element]="element"
+        [ngClass]="{ selected: isSelected(element) }"
+        (click)="toggle(element)"
+      />
     }
   </div>
 }

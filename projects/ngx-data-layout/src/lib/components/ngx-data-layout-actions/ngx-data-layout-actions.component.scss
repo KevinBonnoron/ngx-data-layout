@@ -1,0 +1,9 @@
+div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button.selected {
+  color: var(--mdc-filled-button-label-text-color);
+  background-color: var(--mdc-filled-button-container-color);
+}
