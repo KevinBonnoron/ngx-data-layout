@@ -1,14 +1,14 @@
-import { Directive, computed, inject } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import { DataLayoutStore } from '../models';
 
 @Directive()
 export abstract class DataLayoutComponent<T> {
   private readonly dataLayoutStore = inject(DataLayoutStore);
 
-  readonly elements = computed(() => this.dataLayoutStore.elements());
-  readonly selectedElements = computed(() => this.dataLayoutStore.selected());
-  readonly allSelected = computed(() => this.dataLayoutStore.allSelected());
-  readonly someSelected = computed(() => this.dataLayoutStore.someSelected());
+  readonly elements = this.dataLayoutStore.elements;
+  readonly selectedElements = this.dataLayoutStore.selected;
+  readonly allSelected = this.dataLayoutStore.allSelected;
+  readonly someSelected = this.dataLayoutStore.someSelected;
 
   toggle(element: T) {
     return this.dataLayoutStore.toggle(element);

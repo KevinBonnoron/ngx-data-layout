@@ -1,9 +1,21 @@
 <div
-  style="display: flex; margin: 1rem; padding: 1rem; border: 1px dashed black; border-radius: 12px"
+  style="
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px dashed black;
+    border-radius: 12px;
+    gap: 1rem;
+  "
 >
   <div style="flex-grow: 1">
     <ngx-data-layout-actions />
   </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput [(ngModel)]="filters" />
+  </mat-form-field>
   <button mat-raised-button (click)="selectAll()" [disabled]="allSelected()">Select All</button>
 </div>
 

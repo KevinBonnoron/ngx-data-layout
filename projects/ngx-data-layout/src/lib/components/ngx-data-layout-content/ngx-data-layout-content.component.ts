@@ -16,8 +16,8 @@ export class NgxDataLayoutContentComponent<T> {
 
   constructor() {
     effect(() => {
-      const currentLayout = this.dataLayoutStore.currentLayout();
-      const dataLayoutComponent = this.options.components.find((component) => component.name === currentLayout);
+      const layout = this.dataLayoutStore.layout();
+      const dataLayoutComponent = this.options.components.find((component) => component.name === layout);
       if (dataLayoutComponent) {
         this.createComponent(dataLayoutComponent.component);
       }

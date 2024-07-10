@@ -17,7 +17,7 @@ export class NgxDataLayoutActionsComponent {
   private readonly options = inject(DATA_LAYOUT_OPTIONS_TOKEN);
 
   readonly layouts = this.options.components.map((component) => component.name);
-  readonly currentLayout = this.dataLayoutStore.currentLayout;
+  readonly currentLayout = this.dataLayoutStore.layout;
 
   setLayout(layout: string) {
     this.dataLayoutStore.setLayout(layout);

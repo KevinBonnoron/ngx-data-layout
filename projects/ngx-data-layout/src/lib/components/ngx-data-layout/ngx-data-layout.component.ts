@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, OnInit, ViewContainerRef, inject, model, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, OnInit, ViewContainerRef, inject, input, viewChild } from '@angular/core';
 import { DataLayoutStore } from '../../models';
 import { dataLayoutStoreProvider } from '../../store-providers';
 import { DATA_LAYOUT_OPTIONS_TOKEN } from '../../tokens';
@@ -16,7 +16,7 @@ export class NgxDataLayoutComponent<T> implements OnInit {
 
   private readonly wrapperViewContainerRef = viewChild.required('wrapper', { read: ViewContainerRef });
 
-  readonly elements = model.required<T[]>();
+  readonly elements = input.required<T[]>();
 
   ngOnInit() {
     const injector = Injector.create({
