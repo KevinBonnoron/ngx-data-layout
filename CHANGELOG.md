@@ -1,3 +1,9 @@
+# [1.3.0](https://github.com/KevinBonnoron/ngx-data-layout/compare/v1.2.0...v1.3.0) (2024-07-10)
+
+### Features
+
+- add filters ([28b3c25](https://github.com/KevinBonnoron/ngx-data-layout/commit/28b3c2500221251e4ff8ee018c65cfbf013d0ce7))
+
 # [1.2.0](https://github.com/KevinBonnoron/ngx-data-layout/compare/v1.1.0...v1.2.0) (2024-07-06)
 
 ### Features
